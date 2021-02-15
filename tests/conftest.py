@@ -1,5 +1,7 @@
 import os
 import tempfile
+from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -8,7 +10,7 @@ from lcovkv.db import init_db, get_db
 
 
 @pytest.fixture
-def app(tmpdir):
+def app(tmpdir: Path) -> None:
     db_fd, db_path = tempfile.mkstemp()
     p = tmpdir.mkdir("data")
     app = create_app({
@@ -27,10 +29,10 @@ def app(tmpdir):
 
 
 @pytest.fixture
-def client(app):
+def client(app: Any) -> Any:
     return app.test_client()
 
 
 @pytest.fixture
-def runner(app):
+def runner(app: Any) -> Any:
     return app.test_cli_runner()

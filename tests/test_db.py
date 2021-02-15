@@ -1,4 +1,7 @@
-def test_init_db_command(runner, monkeypatch):
+from typing import Any
+
+
+def test_init_db_command(runner: Any, monkeypatch: Any) -> None:
     class Recorder(object):
         called = False
 
