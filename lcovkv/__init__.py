@@ -1,4 +1,5 @@
 import os
+from typing import Tuple, Any
 
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
@@ -11,7 +12,7 @@ KEY_ERR_RET = {'message': 'NOT FOUND!'}, 404
 
 
 class GET(Resource):
-    def get(self):
+    def get(self) -> Tuple[dict, int]:
         db_ = db.get_db()
         parser = reqparse.RequestParser()
         parser.add_argument('commit_hash')
@@ -30,7 +31,7 @@ class GET(Resource):
 
 
 class SET(Resource):
-    def put(self, commit_hash):
+    def put(self, commit_hash: Any) -> Tuple[dict, int]:
         db_ = db.get_db()
         parser = reqparse.RequestParser()
         parser.add_argument('value')
@@ -47,8 +48,7 @@ class SET(Resource):
             return IO_ERR_RET
 
 
-def create_app(test_config=None):
-    # create and configure the app
+def create_app(test_config: Any =None) -> Flask:
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
