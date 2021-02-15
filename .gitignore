@@ -1,0 +1,11 @@
+.tox
+.coverage
+coverage
+coverage.xml
+instance
+patchr.egg-info
+__pycache__
+venv
+dist
+build
+*egg-info
